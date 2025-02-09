@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>MaxRules</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"> 
+</head>
+<body>
+
+    <h2>MaxRules</h2>
+    <div class="buttons">
+        <button onclick="document.getElementById('fileInput1').click();">Wgraj tablicę 1</button>
+        <button onclick="document.getElementById('fileInput2').click();">Wgraj tablicę 2</button>
+        <button onclick="document.getElementById('fileInput3').click();">Wgraj tablicę 3</button>
+    </div>
+
+    <div class="buttons">
+        <button id="generateAll" onclick="generateAllRules()" disabled>Generuj reguły decyzyjne dla wszystkich tablic</button>
+    </div>
+
+    <p id="globalRulesMessage" style="color: blue; display: none;">
+        Wygenerowane reguły znajdują się w tabelach oraz zostały zapisane do plików txt.
+    </p>
+
+    <div class="buttons">
+        <button id="findMaxRules" onclick="findMaxRules()" disabled>Znajdź reguły prawdziwe dla maksymalnej liczby drzew decyzyjnych</button>
+    </div>
+
+    <p id="maxRulesMessage" style="color: blue; display: none;">
+        Znalezione reguły znajdują się poniżej. Zostały także zapisane do pliku .txt.
+    </p>
+    
+    <div id="maxRulesContainer">
+        <pre id="maxRulesOutput"></pre>
+    </div>
+
+    <input type="file" id="fileInput1" accept=".csv" onchange="uploadFile(this, 'dataTable1')" style="display: none;">
+    <input type="file" id="fileInput2" accept=".csv" onchange="uploadFile(this, 'dataTable2')" style="display: none;">
+    <input type="file" id="fileInput3" accept=".csv" onchange="uploadFile(this, 'dataTable3')" style="display: none;">
+
+    <div class="table-container">
+        <h3>Tablica nr 1</h3>
+        <table id="dataTable1"></table> 
+        <table id="rulesTable1"></table> 
+    </div>
+
+    <p id="rulesMessage1" style="color: green; display: none;">Reguły zostały wygenerowane - w powyższej tabeli, pod danymi z pliku</p>
+
+    <button id="generateTree1" onclick="generateDecisionTree(1)" disabled>Wizualizuj drzewo decyzyjne dla tablicy nr 1</button>
+    </br>
+    
+    <div class="tree-container" id="treeContainer1" style="display: none;">
+        <h3>Wizualizacja drzewa decyzyjnego dla tablicy nr 1</h3>
+        <img id="treeImage1" style="display:none; max-width: 90%;">
+    </div>
+
+    <div class="table-container">
+        <h3>Tablica nr 2</h3>
+        <table id="dataTable2"></table>
+        <table id="rulesTable2"></table>
+    </div>
+
+    <p id="rulesMessage2" style="color: green; display: none;">Reguły zostały wygenerowane - w powyższej tabeli, pod danymi z pliku</p>
+
+    <button id="generateTree2" onclick="generateDecisionTree(2)" disabled>Wizualizuj drzewo decyzyjne dla tablicy nr 2</button>
+    </br>
+    <div class="tree-container" id="treeContainer2" style="display: none;">
+        <h3>Wizualizacja drzewa decyzyjnego dla tablicy nr 2</h3>
+        <img id="treeImage2" style="display:none; max-width: 90%;">
+    </div>
+
+    <div class="table-container">
+        <h3>Tablica nr 3</h3>
+        <table id="dataTable3"></table>
+        <table id="rulesTable3"></table>
+    </div>
+
+    <p id="rulesMessage3" style="color: green; display: none;">Reguły zostały wygenerowane - w powyższej tabeli, pod danymi z pliku</p>
+
+    <button id="generateTree3" onclick="generateDecisionTree(3)" disabled>Wizualizuj drzewo decyzyjne dla tablicy nr 3</button>
+    </br>
+    <div class="tree-container" id="treeContainer3" style="display: none;">
+        <h3>Wizualizacja drzewa decyzyjnego dla tablicy nr 3</h3>
+        <img id="treeImage3" style="display:none; max-width: 90%;">
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+
+</body>
+</html>
